@@ -1,52 +1,35 @@
-let circle = {
-	x: 0,
-	y: 0,
-	diameter: 0
-};
-
-let color = {
-	r: 0,
-	g: 0,
-	b: 0
-};
+let bubble2;
+let bubble1;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	background(255, 255, 100);
+	bubble2 = new Bubble();
+	bubble1 = new Bubble();
 }
 
 function draw() {
-	circle.x = random(0, width);
-	circle.y = random(0, height);
-	circle.diameter = random(20, 30);
-	color.r = random(100, 200);
-	color.b = random(100, 200);
-	noStroke();
-	fill(color.r, color.g, color.b, 150);
-	ellipse(circle.x, circle.y, circle.diameter);
-}
-/* let x = 26;
+	background(255, 255, 0);
 
-let counter = 2;
-
-function setup() {
-	createCanvas(windowWidth, windowHeight);
+	bubble1.draw();
+	bubble1.move();
+	bubble2.draw();
+	bubble2.move();
 }
 
-function draw() {
-	background(220, 110, 200);
-	if (mouseX > width / 2) {
-		fill(100, 50, 250);
-	} else {
+class Bubble {
+	constructor() {
+		this.x = width / 2;
+		this.y = height / 2;
+	}
+
+	move() {
+		this.x += random(-7, 7);
+		this.y += random(-7, 7);
+	}
+
+	draw() {
 		noFill();
+		strokeWeight(8);
+		ellipse(this.x, this.y, 50);
 	}
-	strokeWeight(4);
-	stroke(255);
-	ellipse(x, 250, 50);
-
-	if (x >= width - 25 || x <= 25) {
-		counter = -counter;
-	}
-
-	x += counter;
-} */
+}
